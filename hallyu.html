@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hallyu 🌸</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Nunito', Arial, sans-serif;
+      background-color: #1a0a2e;
+      color: white;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #2d0050 0%, #6b0f8c 50%, #c2185b 100%);
+      text-align: center;
+      padding: 70px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "🌸 ✨ 🌸 ✨ 🌸 ✨ 🌸 ✨ 🌸 ✨";
+      position: absolute;
+      top: 14px; left: 0; right: 0;
+      font-size: 1.1rem;
+      opacity: 0.5;
+      letter-spacing: 6px;
+      animation: flotar 5s linear infinite;
+    }
+    @keyframes flotar {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-80px); }
+    }
+    header h1 {
+      font-size: clamp(2.5rem, 9vw, 5.5rem);
+      font-weight: 900;
+      color: white;
+      text-shadow: 0 0 30px rgba(255,105,180,0.7);
+      letter-spacing: 4px;
+    }
+    header h1 span { color: #ffb3d9; }
+    header p {
+      margin-top: 12px;
+      color: #f8bbd9;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .header-coreano {
+      margin-top: 8px;
+      color: rgba(255,179,217,0.6);
+      font-size: 1.3rem;
+      letter-spacing: 6px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background-color: #12001f;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 16px 20px;
+      border-bottom: 2px solid #6b0f8c;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: #f48fb1;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 7px 18px;
+      border: 1px solid #c2185b;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    nav a:hover {
+      background-color: #c2185b;
+      color: white;
+    }
+
+    /* ── SECCIONES ── */
+    .seccion {
+      max-width: 960px;
+      margin: 60px auto;
+      padding: 0 22px;
+    }
+    .seccion h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #f48fb1;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .seccion h2::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, #c2185b, transparent);
+      border-radius: 2px;
+    }
+    .seccion p {
+      color: #e1bee7;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    /* ── INTRO STATS ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .stat-box {
+      background: linear-gradient(145deg, #2d0050, #4a0072);
+      border: 1px solid #6b0f8c;
+      border-radius: 14px;
+      padding: 22px 14px;
+      text-align: center;
+    }
+    .stat-box .num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #f48fb1;
+    }
+    .stat-box .label {
+      font-size: 0.82rem;
+      color: #e1bee7;
+      margin-top: 4px;
+    }
+
+    /* ── KPOP ARTISTAS ── */
+    .kpop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+    }
+    .kpop-card {
+      background: linear-gradient(145deg, #2d0050, #4a0072);
+      border: 1px solid #6b0f8c;
+      border-radius: 16px;
+      padding: 24px 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .kpop-card:hover {
+      transform: translateY(-5px);
+      border-color: #f48fb1;
+      box-shadow: 0 8px 24px rgba(194,24,91,0.4);
+    }
+    .kpop-card .emoji { font-size: 2.2rem; margin-bottom: 8px; }
+    .kpop-card h3 { color: white; font-size: 1rem; font-weight: 800; }
+    .kpop-card p { color: #f48fb1; font-size: 0.8rem; margin-top: 4px; }
+    .kpop-card .fans { 
+      margin-top: 8px; 
+      background-color: rgba(194,24,91,0.2);
+      border-radius: 10px;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      color: #ffb3d9;
+      display: inline-block;
+    }
+
+    /* ── CANCIONES FAVORITAS ── */
+    .canciones-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .cancion-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background-color: #2d0050;
+      border: 1px solid #4a0072;
+      border-radius: 12px;
+      padding: 14px 18px;
+      transition: border-color 0.2s;
+    }
+    .cancion-item:hover { border-color: #f48fb1; }
+    .cancion-num {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #c2185b;
+      min-width: 30px;
+    }
+    .cancion-item h4 { color: white; font-size: 0.95rem; font-weight: 800; margin-bottom: 2px; }
+    .cancion-item span { color: #f48fb1; font-size: 0.82rem; }
+    .cancion-nota {
+      margin-left: auto;
+      font-size: 1.2rem;
+    }
+
+    /* ── KDRAMAS ── */
+    .drama-lista { display: flex; flex-direction: column; gap: 18px; }
+    .drama-item {
+      background-color: #2d0050;
+      border: 1px solid #4a0072;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .drama-item:hover { border-color: #f48fb1; }
+    .drama-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .drama-img-error {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #4a0072, #c2185b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .drama-body {
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .drama-emoji-big { font-size: 2rem; min-width: 40px; }
+    .drama-body h3 { color: white; font-size: 1.05rem; font-weight: 800; margin-bottom: 4px; }
+    .drama-body .meta { color: #f48fb1; font-size: 0.82rem; margin-bottom: 8px; }
+    .drama-body .desc { color: #e1bee7; font-size: 0.88rem; line-height: 1.6; }
+    .drama-badge {
+      margin-left: auto;
+      background-color: #c2185b;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+
+    /* ── COMIDA ── */
+    .comida-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+    }
+    .comida-card {
+      background-color: #2d0050;
+      border: 1px solid #4a0072;
+      border-radius: 14px;
+      padding: 22px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .comida-card:hover {
+      border-color: #f48fb1;
+      transform: scale(1.04);
+    }
+    .comida-card .emoji { font-size: 2.4rem; margin-bottom: 8px; }
+    .comida-card h3 { color: white; font-size: 0.95rem; font-weight: 800; }
+    .comida-card p { color: #f48fb1; font-size: 0.78rem; margin-top: 4px; }
+    .comida-card .nivel {
+      margin-top: 8px;
+      font-size: 0.75rem;
+      color: #ffb3d9;
+    }
+
+    /* ── IDOLOS ── */
+    .idolos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
+    }
+    .idol-card {
+      background: linear-gradient(145deg, #2d0050, #3d0060);
+      border: 1px solid #6b0f8c;
+      border-radius: 16px;
+      padding: 24px 16px;
+      text-align: center;
+      transition: all 0.25s;
+    }
+    .idol-card:hover {
+      border-color: #f48fb1;
+      transform: translateY(-4px);
+    }
+    .idol-card .avatar {
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c2185b, #6b0f8c);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.9rem;
+      margin: 0 auto 12px;
+      border: 2px solid #f48fb1;
+    }
+    .idol-card h3 { color: white; font-size: 1rem; font-weight: 800; }
+    .idol-card .grupo { color: #f48fb1; font-size: 0.82rem; margin-top: 4px; }
+    .idol-card .pais { color: #e1bee7; font-size: 0.78rem; margin-top: 3px; }
+    .idol-card .dato {
+      margin-top: 8px;
+      background-color: rgba(194,24,91,0.15);
+      border-radius: 8px;
+      padding: 5px 8px;
+      font-size: 0.75rem;
+      color: #ffb3d9;
+    }
+
+    /* ── CURIOSIDADES ── */
+    .curio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .curio-card {
+      background-color: #2d0050;
+      border-left: 4px solid #c2185b;
+      border-radius: 0 12px 12px 0;
+      padding: 20px 18px;
+    }
+    .curio-card .curio-titulo {
+      color: #f48fb1;
+      font-weight: 800;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+    .curio-card p { color: #e1bee7; font-size: 0.88rem; line-height: 1.6; }
+
+    /* ── QUIZ ── */
+    .quiz-caja {
+      background-color: #12001f;
+      border: 2px solid #6b0f8c;
+      border-radius: 20px;
+      padding: 36px 28px;
+    }
+    #quiz-pregunta {
+      font-size: 1.1rem;
+      color: white;
+      font-weight: 700;
+      margin: 16px 0 20px;
+      min-height: 48px;
+    }
+    .quiz-opciones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .quiz-op {
+      background-color: #2d0050;
+      border: 1px solid #4a0072;
+      color: white;
+      padding: 12px 10px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Nunito', Arial, sans-serif;
+      transition: all 0.15s;
+    }
+    .quiz-op:hover { background-color: #4a0072; border-color: #f48fb1; }
+    .quiz-op.correcta   { background-color: #1b5e20 !important; border-color: #4caf50 !important; }
+    .quiz-op.incorrecta { background-color: #7f1d1d !important; border-color: #ef4444 !important; }
+    #quiz-res   { color: #f48fb1; font-weight: 800; margin-bottom: 8px; min-height: 26px; }
+    #quiz-score { color: #e1bee7; font-size: 0.9rem; margin-bottom: 18px; }
+    .quiz-barra-cont {
+      background-color: #2d0050;
+      border-radius: 10px;
+      height: 6px;
+      margin-bottom: 20px;
+    }
+    .quiz-barra {
+      height: 6px;
+      background: linear-gradient(90deg, #c2185b, #f48fb1);
+      border-radius: 10px;
+      transition: width 0.4s;
+      width: 0%;
+    }
+
+    /* ── BOTONES ── */
+    .btn {
+      background: linear-gradient(90deg, #c2185b, #6b0f8c);
+      border: none;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: 'Nunito', Arial, sans-serif;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: linear-gradient(135deg, #12001f, #2d0050);
+      text-align: center;
+      padding: 48px 20px;
+      border-top: 2px solid #4a0072;
+      margin-top: 60px;
+    }
+    footer .footer-titulo {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #f48fb1;
+      margin-bottom: 10px;
+    }
+    footer p { color: #9c4dcc; font-size: 0.88rem; }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+    footer .footer-links a {
+      color: #f48fb1;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    footer .footer-links a:hover { color: white; }
+
+    @media (max-width: 480px) {
+      .quiz-opciones { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="inicio">
+  <h1>Hal<span>lyu</span> 🌸</h1>
+  <p>Un recorrido por la música, las series y la gastronomía de Corea</p>
+  <p class="header-coreano">한류 · 韓流 · 한국</p>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio">🏠 Inicio</a>
+  <a href="#kpop">🎵 K-pop</a>
+  <a href="#canciones">🎶 Canciones</a>
+  <a href="#kdramas">📺 K-dramas</a>
+  <a href="#comida">🍜 Comida</a>
+  <a href="#idolos">🌟 Ídolos</a>
+  <a href="#curiosidades">💡 Curiosidades</a>
+  <a href="#quiz">🧠 Quiz</a>
+</nav>
+
+<!-- INTRO -->
+<div class="seccion">
+  <h2>¿Qué es la Ola Coreana? 🌊</h2>
+  <p>
+    La <strong style="color:#f48fb1;">Ola Coreana</strong> (Hallyu / 한류) es el fenómeno cultural que llevó
+    la música, series, comida y estilo de vida de Corea del Sur a todo el mundo.
+    Desde los grupos de K-pop que rompen récords en Billboard hasta los K-dramas que no te dejan
+    dormir, y una gastronomía que conquistó cada rincón del planeta — Korea se convirtió en la
+    cultura más cool del siglo XXI. ¡Bienvenido a este mundo! 🇰🇷
+  </p>
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="num">+100M</div>
+      <div class="label">Fans del K-pop en el mundo</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">2012</div>
+      <div class="label">Gangnam Style rompe YouTube</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">#1</div>
+      <div class="label">Squid Game en 94 países</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">+200</div>
+      <div class="label">K-dramas producidos al año</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">5000</div>
+      <div class="label">Años de historia culinaria</div>
+    </div>
+  </div>
+</div>
+
+<!-- KPOP -->
+<div class="seccion" id="kpop">
+  <h2>🎵 K-pop — Grupos Principales</h2>
+  <div class="kpop-grid">
+    <div class="kpop-card" onclick="info('BTS 💜', 'El grupo de K-pop más famoso del mundo. 7 integrantes: RM, Jin, Suga, J-Hope, Jimin, V y Jungkook. Debutaron en 2013 y se convirtieron en el primer grupo coreano en encabezar las listas de Billboard. Sus fans se llaman ARMY y son millones alrededor del globo.')">
+      <div class="emoji">💜</div>
+      <h3>BTS</h3>
+      <p>Big Hit · 2013</p>
+      <div class="fans">Fans: ARMY</div>
+    </div>
+    <div class="kpop-card" onclick="info('BLACKPINK 🖤', 'El grupo femenino más famoso del K-pop. 4 integrantes: Jisoo, Jennie, Rosé y Lisa. Sus fans se llaman BLINK. Canciones icónicas: How You Like That, Kill This Love, Pink Venom. Lisa es tailandesa, lo que las hace un grupo verdaderamente internacional.')">
+      <div class="emoji">🖤</div>
+      <h3>BLACKPINK</h3>
+      <p>YG Entertainment · 2016</p>
+      <div class="fans">Fans: BLINK</div>
+    </div>
+    <div class="kpop-card" onclick="info('Stray Kids 🔥', 'Grupo de 8 integrantes que se diferencia porque ellos mismos producen y escriben su música. Sus fans se llaman STAY. Canciones: God\'s Menu, MIROH, Thunderous, S-Class. Bang Chan, su líder, creció en Australia.')">
+      <div class="emoji">🔥</div>
+      <h3>Stray Kids</h3>
+      <p>JYP Entertainment · 2018</p>
+      <div class="fans">Fans: STAY</div>
+    </div>
+    <div class="kpop-card" onclick="info('TWICE 🎀', 'Grupo femenino de 9 integrantes de 3 países distintos: Corea, Japón y Taiwán. Sus fans se llaman ONCE. Conocidas por su concepto colorido y alegre. Canciones: TT, Fancy, Feel Special, Alcohol-Free.')">
+      <div class="emoji">🎀</div>
+      <h3>TWICE</h3>
+      <p>JYP Entertainment · 2015</p>
+      <div class="fans">Fans: ONCE</div>
+    </div>
+    <div class="kpop-card" onclick="info('EXO ⚡', 'Grupo legendario con concepto de superpoderes: cada integrante tiene un poder especial como telekinesis, fuego o viento. Sus fans se llaman EXO-L. Canciones: Growl, Monster, Love Shot, Ko Ko Bop. Son considerados una de las grandes leyendas del K-pop.')">
+      <div class="emoji">⚡</div>
+      <h3>EXO</h3>
+      <p>SM Entertainment · 2012</p>
+      <div class="fans">Fans: EXO-L</div>
+    </div>
+    <div class="kpop-card" onclick="info('aespa 🤖', 'Grupo innovador con un concepto único de metaverso: cada integrante tiene un avatar digital llamado \"æ\". Sus fans se llaman MY. Canciones: Black Mamba, Next Level, Savage, Spicy. Representan la nueva era del K-pop con tecnología y narrativa futurista.')">
+      <div class="emoji">🤖</div>
+      <h3>aespa</h3>
+      <p>SM Entertainment · 2020</p>
+      <div class="fans">Fans: MY</div>
+    </div>
+    <div class="kpop-card" onclick="info('NewJeans 🐇', 'El grupo más fresco del K-pop actual. 5 integrantes con un estilo retro-moderno muy diferente al resto. Sus fans se llaman Bunnies. Canciones: Hype Boy, Attention, OMG, Super Shy. Son el fenómeno del K-pop de la nueva generación.')">
+      <div class="emoji">🐇</div>
+      <h3>NewJeans</h3>
+      <p>ADOR · 2022</p>
+      <div class="fans">Fans: Bunnies</div>
+    </div>
+    <div class="kpop-card" onclick="info('SHINee ✨', 'Pioneros del K-pop moderno. Conocidos por su increíble talento vocal y coreografías. Sus fans se llaman Shawol. Canciones: Lucifer, Ring Ding Dong, View, Sherlock. Han influenciado a casi todos los grupos actuales.')">
+      <div class="emoji">✨</div>
+      <h3>SHINee</h3>
+      <p>SM Entertainment · 2008</p>
+      <div class="fans">Fans: Shawol</div>
+    </div>
+  </div>
+</div>
+
+<!-- CANCIONES FAVORITAS -->
+<div class="seccion" id="canciones">
+  <h2>🎶 Canciones Imperdibles</h2>
+  <div class="canciones-lista">
+    <div class="cancion-item">
+      <span class="cancion-num">01</span>
+      <div>
+        <h4>Dynamite</h4>
+        <span>BTS · 2020 · Primer #1 en Billboard Hot 100</span>
+      </div>
+      <span class="cancion-nota">💜</span>
+    </div>
+    <div class="cancion-item">
+      <span class="cancion-num">02</span>
+      <div>
+        <h4>How You Like That</h4>
+        <span>BLACKPINK · 2020 · Rompió récords de YouTube en 24 horas</span>
+      </div>
+      <span class="cancion-nota">🖤</span>
+    </div>
+    <div class="cancion-item">
+      <span class="cancion-num">03</span>
+      <div>
+        <h4>Gangnam Style</h4>
+        <span>PSY · 2012 · Primera vez que YouTube superó el contador de vistas</span>
+      </div>
+      <span class="cancion-nota">🎩</span>
+    </div>
+    <div class="cancion-item">
+      <span class="cancion-num">04</span>
+      <div>
+        <h4>Next Level</h4>
+        <span>aespa · 2021 · Himno de la nueva era del K-pop</span>
+      </div>
+      <span class="cancion-nota">🤖</span>
+    </div>
+    <div class="cancion-item">
+      <span class="cancion-num">05</span>
+      <div>
+        <h4>God's Menu</h4>
+        <span>Stray Kids · 2020 · Producida por los propios integrantes</span>
+      </div>
+      <span class="cancion-nota">🔥</span>
+    </div>
+    <div class="cancion-item">
+      <span class="cancion-num">06</span>
+      <div>
+        <h4>Hype Boy</h4>
+        <span>NewJeans · 2022 · El debut más exitoso de la nueva generación</span>
+      </div>
+      <span class="cancion-nota">🐇</span>
+    </div>
+    <div class="cancion-item">
+      <span class="cancion-num">07</span>
+      <div>
+        <h4>Growl</h4>
+        <span>EXO · 2013 · Considerada una de las mejores canciones del K-pop</span>
+      </div>
+      <span class="cancion-nota">⚡</span>
+    </div>
+  </div>
+</div>
+
+<!-- KDRAMAS -->
+<div class="seccion" id="kdramas">
+  <h2>📺 K-dramas Recomendados</h2>
+  <div class="drama-lista">
+
+    <div class="drama-item">
+      <img class="drama-img" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d9/Crash_Landing_on_You.jpg/250px-Crash_Landing_on_You.jpg"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+           alt="Crash Landing on You" />
+      <div class="drama-img-error" style="display:none;">🪂</div>
+      <div class="drama-body">
+        <div class="drama-emoji-big">🪂</div>
+        <div>
+          <h3>Crash Landing on You</h3>
+          <p class="meta">Romance · 2019 · tvN / Netflix · 16 episodios</p>
+          <p class="desc">Una empresaria surcoreana aterriza accidentalmente en Corea del Norte durante un parapente y se enamora de un oficial militar del ejército norcoreano. Una historia de amor imposible, emotiva y llena de humor que se convirtió en uno de los K-dramas más vistos de la historia.</p>
+        </div>
+        <span class="drama-badge">⭐ Clásico</span>
+      </div>
+    </div>
+
+    <div class="drama-item">
+      <img class="drama-img" src="https://upload.wikimedia.org/wikipedia/en/thumb/5/51/Goblin_The_Lonely_and_Great_God_poster.jpg/220px-Goblin_The_Lonely_and_Great_God_poster.jpg"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+           alt="Goblin" />
+      <div class="drama-img-error" style="display:none;">🕯️</div>
+      <div class="drama-body">
+        <div class="drama-emoji-big">🕯️</div>
+        <div>
+          <h3>Goblin (도깨비)</h3>
+          <p class="meta">Fantasía / Romance · 2016 · tvN · 16 episodios</p>
+          <p class="desc">Un guerrero inmortal de 939 años busca a su novia destinada, la única que puede quitarle la espada del pecho y darle la muerte que anhela. Épico, romántico y con momentos profundamente emotivos. La música y fotografía son extraordinarias.</p>
+        </div>
+        <span class="drama-badge">💜 Imperdible</span>
+      </div>
+    </div>
+
+    <div class="drama-item">
+      <img class="drama-img" src="https://upload.wikimedia.org/wikipedia/en/thumb/8/82/Squid_Game_S1_poster.jpg/220px-Squid_Game_S1_poster.jpg"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+           alt="Squid Game" />
+      <div class="drama-img-error" style="display:none;">🎮</div>
+      <div class="drama-body">
+        <div class="drama-emoji-big">🎮</div>
+        <div>
+          <h3>Squid Game (오징어 게임)</h3>
+          <p class="meta">Thriller / Suspenso · 2021 · Netflix · 9 episodios</p>
+          <p class="desc">Personas desesperadas por dinero son invitadas a competir en una serie de juegos infantiles coreanos clásicos — pero con una trampa mortal. Se convirtió en la serie más vista en la historia de Netflix, alcanzando el #1 en 94 países simultáneamente.</p>
+        </div>
+        <span class="drama-badge">🔥 Viral</span>
+      </div>
+    </div>
+
+    <div class="drama-item">
+      <img class="drama-img" src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/My_Love_from_the_Star.jpg/220px-My_Love_from_the_Star.jpg"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+           alt="My Love from the Star" />
+      <div class="drama-img-error" style="display:none;">⭐</div>
+      <div class="drama-body">
+        <div class="drama-emoji-big">⭐</div>
+        <div>
+          <h3>My Love from the Star</h3>
+          <p class="meta">Romance / Ciencia Ficción · 2013 · SBS · 21 episodios</p>
+          <p class="desc">Un alienígena que lleva 400 años viviendo en la Tierra se enamora de una famosa actriz justo antes de tener que partir definitivamente. Romántico, divertido y con mucha química entre sus protagonistas. Fue un fenómeno en toda Asia.</p>
+        </div>
+        <span class="drama-badge">🌟 Favorito</span>
+      </div>
+    </div>
+
+    <div class="drama-item">
+      <img class="drama-img" src="https://upload.wikimedia.org/wikipedia/en/thumb/8/83/Descendants_of_the_Sun.jpg/220px-Descendants_of_the_Sun.jpg"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+           alt="Descendants of the Sun" />
+      <div class="drama-img-error" style="display:none;">🪖</div>
+      <div class="drama-body">
+        <div class="drama-emoji-big">🪖</div>
+        <div>
+          <h3>Descendants of the Sun</h3>
+          <p class="meta">Romance / Acción · 2016 · KBS2 · 16 episodios</p>
+          <p class="desc">Un capitán de las fuerzas especiales del ejército coreano y una médico cirujana se enamoran entre misiones de combate y emergencias humanitarias en una zona de conflicto. Lleno de acción, romance y escenas épicas. Fue un fenómeno en toda Asia.</p>
+        </div>
+        <span class="drama-badge">⭐ Clásico</span>
+      </div>
+    </div>
+
+    <div class="drama-item">
+      <img class="drama-img" src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2c/It%27s_Okay_to_Not_Be_Okay_poster.jpg/220px-It%27s_Okay_to_Not_Be_Okay_poster.jpg"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+           alt="It's Okay to Not Be Okay" />
+      <div class="drama-img-error" style="display:none;">🦋</div>
+      <div class="drama-body">
+        <div class="drama-emoji-big">🦋</div>
+        <div>
+          <h3>It's Okay to Not Be Okay</h3>
+          <p class="meta">Romance / Drama · 2020 · tvN / Netflix · 16 episodios</p>
+          <p class="desc">Un trabajador de salud mental que cuida a su hermano con autismo se enamora de una famosa escritora de cuentos de hadas con un trastorno de personalidad antisocial. Un drama profundo, visualmente hermoso y con una historia de sanación que toca el alma.</p>
+        </div>
+        <span class="drama-badge">💜 Especial</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- COMIDA -->
+<div class="seccion" id="comida">
+  <h2>🍜 Gastronomía Coreana</h2>
+  <p style="margin-bottom: 20px;">La comida coreana es famosa por sus sabores intensos, el uso del picante y los fermentados. Cada plato tiene siglos de historia y tradición detrás.</p>
+  <div class="comida-grid">
+    <div class="comida-card" onclick="info('🍜 Ramyeon', 'Los fideos instantáneos coreanos son famosos en todo el mundo. La versión más popular es el Shin Ramyeon, super picante. ¡Siempre aparece en los K-dramas! Hay versiones con queso, mariscos, kimchi y muchas variedades más.')">
+      <div class="emoji">🍜</div>
+      <h3>Ramyeon</h3>
+      <p>Fideos picantes</p>
+      <div class="nivel">🌶️ Picante medio</div>
+    </div>
+    <div class="comida-card" onclick="info('🌶️ Tteokbokki', 'Pasteles de arroz (tteok) cocinados en una salsa picante roja llamada gochujang. Es el snack callejero más popular de Corea. Dulce, picante y muy adictivo. Se vende en los pojangmacha (puestos callejeros) de todo el país.')">
+      <div class="emoji">🌶️</div>
+      <h3>Tteokbokki</h3>
+      <p>Pasteles de arroz</p>
+      <div class="nivel">🌶️🌶️ Muy picante</div>
+    </div>
+    <div class="comida-card" onclick="info('🍚 Bibimbap', 'Arroz mezclado con una variedad de verduras salteadas, carne de res, huevo frito y salsa gochujang. Su nombre literalmente significa \"arroz mezclado\". Es uno de los platos más representativos y nutritivos de la cocina coreana.')">
+      <div class="emoji">🍚</div>
+      <h3>Bibimbap</h3>
+      <p>Arroz mezclado</p>
+      <div class="nivel">🌶️ Opcional</div>
+    </div>
+    <div class="comida-card" onclick="info('🥩 Korean BBQ', 'Carne asada directamente en una parrilla integrada en la mesa del restaurante. Se come envuelta en hojas de lechuga o sésamo junto con ajo asado, pasta de soja y kimchi. Es una experiencia social y deliciosa que dura horas.')">
+      <div class="emoji">🥩</div>
+      <h3>Korean BBQ</h3>
+      <p>Carne a la parrilla</p>
+      <div class="nivel">🔥 Experiencia única</div>
+    </div>
+    <div class="comida-card" onclick="info('🍱 Kimbap', 'Rollos de arroz sazonado con aceite de sésamo, rellenos de verduras, huevo, carne o atún, envueltos en alga marina. Parecido al sushi japonés pero con un sabor único y diferente. Es el almuerzo favorito de los coreanos para llevar.')">
+      <div class="emoji">🍱</div>
+      <h3>Kimbap</h3>
+      <p>Rollos de arroz</p>
+      <div class="nivel">✅ Sin picante</div>
+    </div>
+    <div class="comida-card" onclick="info('🥬 Kimchi', 'Col fermentada con mezcla de ajo, jengibre, cebolleta y pasta de chile rojo. Es el acompañamiento más famoso de Corea y está presente en casi todas las comidas. El proceso de fermentación lo llena de probióticos que son muy beneficiosos para la salud.')">
+      <div class="emoji">🥬</div>
+      <h3>Kimchi</h3>
+      <p>Col fermentada</p>
+      <div class="nivel">🌶️🌶️ Intenso</div>
+    </div>
+    <div class="comida-card" onclick="info('🧆 Japchae', 'Fideos de vidrio hechos de batata dulce, salteados con verduras coloridas, carne de res y salsa de soja. Tiene un sabor suave, dulzón y muy elegante. Es un plato que se sirve en celebraciones y ocasiones especiales.')">
+      <div class="emoji">🍝</div>
+      <h3>Japchae</h3>
+      <p>Fideos de batata</p>
+      <div class="nivel">✅ Suave y dulce</div>
+    </div>
+    <div class="comida-card" onclick="info('🍲 Sundubu Jjigae', 'Estofado de tofu suave en un caldo rojo intenso de mariscos o carne de cerdo. Se sirve hirviendo en una olla de barro directamente a la mesa. Es reconfortante, caliente y perfecta para los días fríos. ¡Muy popular en invierno!')">
+      <div class="emoji">🍲</div>
+      <h3>Sundubu Jjigae</h3>
+      <p>Estofado de tofu</p>
+      <div class="nivel">🌶️🌶️ Muy picante</div>
+    </div>
+  </div>
+</div>
+
+<!-- IDOLOS -->
+<div class="seccion" id="idolos">
+  <h2>🌟 Ídolos y Actores Favoritos</h2>
+  <div class="idolos-grid">
+    <div class="idol-card">
+      <div class="avatar">💜</div>
+      <h3>Jungkook</h3>
+      <p class="grupo">BTS — Golden Maknae</p>
+      <p class="pais">🇰🇷 Busan, Corea del Sur</p>
+      <p class="dato">Canta, baila, produce y actúa</p>
+    </div>
+    <div class="idol-card">
+      <div class="avatar">🖤</div>
+      <h3>Jennie</h3>
+      <p class="grupo">BLACKPINK — Solista</p>
+      <p class="pais">🇰🇷 Seúl, Corea del Sur</p>
+      <p class="dato">Rapera, cantante y modelo</p>
+    </div>
+    <div class="idol-card">
+      <div class="avatar">🎀</div>
+      <h3>Lisa</h3>
+      <p class="grupo">BLACKPINK — Main Dancer</p>
+      <p class="pais">🇹🇭 Buriram, Tailandia</p>
+      <p class="dato">La mejor bailarina del K-pop</p>
+    </div>
+    <div class="idol-card">
+      <div class="avatar">🔥</div>
+      <h3>Bang Chan</h3>
+      <p class="grupo">Stray Kids — Líder / Productor</p>
+      <p class="pais">🇦🇺 Sydney, Australia</p>
+      <p class="dato">Produce toda la música del grupo</p>
+    </div>
+    <div class="idol-card">
+      <div class="avatar">⭐</div>
+      <h3>V (Taehyung)</h3>
+      <p class="grupo">BTS — Solista</p>
+      <p class="pais">🇰🇷 Daegu, Corea del Sur</p>
+      <p class="dato">Cantante, fotógrafo y actor</p>
+    </div>
+    <div class="idol-card">
+      <div class="avatar">✨</div>
+      <h3>Winter</h3>
+      <p class="grupo">aespa — Main Dancer</p>
+      <p class="pais">🇰🇷 Seúl, Corea del Sur</p>
+      <p class="dato">Voz poderosa y baile impecable</p>
+    </div>
+    <div class="idol-card">
+      <div class="avatar">🌸</div>
+      <h3>IU (Lee Ji-eun)</h3>
+      <p class="grupo">Solista — Actriz</p>
+      <p class="pais">🇰🇷 Seúl, Corea del Sur</p>
+      <p class="dato">La artista solista más amada de Corea</p>
+    </div>
+    <div class="idol-card">
+      <div class="avatar">🦋</div>
+      <h3>Kim Soo-hyun</h3>
+      <p class="grupo">Actor — My Love from the Star</p>
+      <p class="pais">🇰🇷 Seúl, Corea del Sur</p>
+      <p class="dato">El actor mejor pagado de Corea</p>
+    </div>
+  </div>
+</div>
+
+<!-- CURIOSIDADES -->
+<div class="seccion" id="curiosidades">
+  <h2>💡 Curiosidades de Corea</h2>
+  <div class="curio-grid">
+    <div class="curio-card">
+      <div class="curio-titulo">🎂 El sistema de edades</div>
+      <p>En Corea todos nacen con 1 año de edad, y el 1 de enero todos cumplen un año más al mismo tiempo, independientemente del día de su cumpleaños real. ¡Un bebé recién nacido en diciembre ya tiene 2 años en enero!</p>
+    </div>
+    <div class="curio-card">
+      <div class="curio-titulo">🌸 El skincare coreano</div>
+      <p>Corea del Sur es la capital mundial del cuidado de la piel. La rutina coreana de skincare puede tener hasta 10 pasos. El K-beauty es un mercado de miles de millones de dólares que lidera las tendencias mundiales.</p>
+    </div>
+    <div class="curio-card">
+      <div class="curio-titulo">🎮 PC Bang (피씨방)</div>
+      <p>Los PC Bang son cafés de internet donde los coreanos van a jugar videojuegos. Son increíblemente populares y hay miles en todo el país. Los videojuegos son considerados un deporte oficial en Corea del Sur.</p>
+    </div>
+    <div class="curio-card">
+      <div class="curio-titulo">🎓 La presión educativa</div>
+      <p>Los estudiantes coreanos son de los que más horas estudian en el mundo. Las academias nocturnas llamadas "hagwon" son comunes. El examen universitario CSAT es tan importante que el país entero para mientras se realiza.</p>
+    </div>
+    <div class="curio-card">
+      <div class="curio-titulo">🏙️ Seúl, la ciudad tech</div>
+      <p>Seúl tiene la internet más rápida del mundo. El transporte público es tan eficiente que incluye metro, autobuses y KTX (tren de alta velocidad). Todo funciona con una tarjeta de transporte integrada.</p>
+    </div>
+    <div class="curio-card">
+      <div class="curio-titulo">🎭 El número 4 trae mala suerte</div>
+      <p>En Corea el número 4 (사/sa) suena igual que la palabra "muerte". Por eso en muchos edificios el piso 4 se omite o se escribe como "F". Es similar a la superstición del 13 en Occidente.</p>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="seccion" id="quiz">
+  <div class="quiz-caja">
+    <h2 style="border:none; padding:0; margin-bottom:4px;">🧠 Quiz de Cultura Coreana</h2>
+    <p style="color:#e1bee7; font-size:0.9rem; margin-bottom:16px;">10 preguntas · ¿Cuánto sabes de Hallyu?</p>
+    <div class="quiz-barra-cont">
+      <div class="quiz-barra" id="quiz-barra"></div>
+    </div>
+    <p id="quiz-pregunta">Presiona "Comenzar" para iniciar el quiz 🌸</p>
+    <div class="quiz-opciones" id="quiz-ops"></div>
+    <p id="quiz-res"></p>
+    <p id="quiz-score"></p>
+    <button class="btn" onclick="iniciarQuiz()">🎮 Comenzar Quiz</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-titulo">Hallyu 🌸 한류</div>
+  <div class="footer-links">
+    <a href="#kpop">🎵 K-pop</a>
+    <a href="#kdramas">📺 K-dramas</a>
+    <a href="#comida">🍜 Comida</a>
+    <a href="#idolos">🌟 Ídolos</a>
+    <a href="#quiz">🧠 Quiz</a>
+  </div>
+  <p>Hecho con HTML y JavaScript · 2024 · 한국을 사랑해요 (¡Amo Corea!) 🇰🇷</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+
+  // --- INFO POPUP ---
+  function info(titulo, descripcion) {
+    alert('✨ ' + titulo + '\n\n' + descripcion);
+  }
+
+  // --- QUIZ ---
+  var preguntas = [
+    { p: '¿Cómo se llaman los fans de BTS?',
+      ops: ['BLINK', 'ARMY', 'ONCE', 'STAY'], c: 1 },
+    { p: '¿Qué significa "Hallyu"?',
+      ops: ['Música coreana', 'Comida coreana', 'Ola coreana', 'Arte coreano'], c: 2 },
+    { p: '¿En qué plataforma se hizo viral Squid Game?',
+      ops: ['Disney+', 'HBO Max', 'Netflix', 'Amazon Prime'], c: 2 },
+    { p: '¿Cuántos integrantes tiene BTS?',
+      ops: ['5', '6', '7', '9'], c: 2 },
+    { p: '¿Cuál es el acompañamiento más famoso de la comida coreana?',
+      ops: ['Ramyeon', 'Bibimbap', 'Tteokbokki', 'Kimchi'], c: 3 },
+    { p: '¿De dónde es Lisa de BLACKPINK?',
+      ops: ['Corea del Sur', 'Japón', 'Tailandia', 'China'], c: 2 },
+    { p: '¿Qué grupo tiene un concepto de metaverso con avatares digitales?',
+      ops: ['BTS', 'NewJeans', 'aespa', 'TWICE'], c: 2 },
+    { p: '¿Cómo se llaman los fans de BLACKPINK?',
+      ops: ['ARMY', 'BLINK', 'ONCE', 'Bunnies'], c: 1 },
+    { p: '¿Qué significa "Bibimbap"?',
+      ops: ['Arroz frito', 'Arroz mezclado', 'Arroz picante', 'Arroz de mar'], c: 1 },
+    { p: '¿En qué año debutó Stray Kids?',
+      ops: ['2015', '2016', '2017', '2018'], c: 3 }
+  ];
+
+  var actual = 0;
+  var puntaje = 0;
+
+  function iniciarQuiz() {
+    actual = 0;
+    puntaje = 0;
+    document.getElementById('quiz-res').textContent = '';
+    document.getElementById('quiz-score').textContent = '';
+    actualizarBarra();
+    mostrarPregunta();
+  }
+
+  function actualizarBarra() {
+    var pct = (actual / preguntas.length) * 100;
+    document.getElementById('quiz-barra').style.width = pct + '%';
+  }
+
+  function mostrarPregunta() {
+    var q = preguntas[actual];
+    document.getElementById('quiz-pregunta').textContent =
+      (actual + 1) + ' / ' + preguntas.length + ' — ' + q.p;
+
+    var cont = document.getElementById('quiz-ops');
+    cont.innerHTML = '';
+
+    for (var i = 0; i < q.ops.length; i++) {
+      var btn = document.createElement('button');
+      btn.className = 'quiz-op';
+      btn.textContent = q.ops[i];
+      btn.onclick = (function(idx) {
+        return function() { responder(idx); };
+      })(i);
+      cont.appendChild(btn);
+    }
+  }
+
+  function responder(idx) {
+    var q = preguntas[actual];
+    var bts = document.querySelectorAll('.quiz-op');
+    for (var i = 0; i < bts.length; i++) {
+      bts[i].disabled = true;
+      if (i === q.c)    bts[i].classList.add('correcta');
+      else if (i === idx) bts[i].classList.add('incorrecta');
+    }
+    var res = document.getElementById('quiz-res');
+    if (idx === q.c) {
+      puntaje++;
+      res.textContent = '✅ ¡Correcto! 🌸';
+    } else {
+      res.textContent = '❌ Era: ' + q.ops[q.c];
+    }
+    setTimeout(function() {
+      actual++;
+      actualizarBarra();
+      if (actual < preguntas.length) {
+        mostrarPregunta();
+        res.textContent = '';
+      } else {
+        terminar();
+      }
+    }, 1600);
+  }
+
+  function terminar() {
+    document.getElementById('quiz-barra').style.width = '100%';
+    document.getElementById('quiz-pregunta').textContent = '🎉 ¡Terminaste el quiz!';
+    document.getElementById('quiz-ops').innerHTML = '';
+    document.getElementById('quiz-res').textContent = '';
+    var msgs = [
+      'Sigue explorando el mundo coreano 📚',
+      '¡Ya conoces algo de Hallyu! 🌸',
+      '¡Buen nivel de conocimiento! ✨',
+      '¡Casi un experto en Corea! 💜',
+      '¡Eres todo un Hallyu Expert! 🏆🇰🇷'
+    ];
+    var nivel = Math.min(Math.floor((puntaje / preguntas.length) * msgs.length), msgs.length - 1);
+    document.getElementById('quiz-score').textContent =
+      'Resultado: ' + puntaje + ' / ' + preguntas.length + ' — ' + msgs[nivel];
+    alert('🌸 ¡Quiz terminado!\nAcertaste ' + puntaje + ' de ' + preguntas.length + '.\n\n' + msgs[nivel]);
+  }
+
+</script>
+</body>
+</html>
